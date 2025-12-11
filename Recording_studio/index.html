@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gao's Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Блок: header -->
+    <header class="header">
+        <div class="page">
+            <div class="header__container">
+                <img src="img/logo.png" alt="Gao's studio" class="header__logo" width="88" height="59">
+
+                <!-- Блок: nav -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="booking.html" class="nav__link">Онлайн-запись</a></li>
+                        <li class="nav__item"><a href="services.html" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Блок: auth -->
+                <div class="auth">
+                    <a href="#" class="auth__link">Войти</a>
+                    <a href="#" class="auth__link auth__link--accent">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Блок: hero -->
+    <section class="hero">
+        <div class="page">
+            <h1 class="hero__title">Превращаем идеи в звуковую реальность</h1>
+            <p class="hero__text">Каждая великая мелодия начинается с тишины и того самого мгновения, когда в голове
+                рождается идея — ещё неясный шёпот, ритм, эмоция. Мы создаем среду, в которой любая творческая идея
+                раскрывается в полную силу, а наша задача — услышать этот шёпот, поймать эмоцию и превратить её в
+                чистую, мощную и безупречную звуковую реальность.</p>
+        </div>
+    </section>
+
+    <!-- Блок: studios -->
+    <section class="studios">
+        <div class="page">
+            <h2 class="studios__title">Наши студии</h2>
+            <div class="studios__container">
+                <!-- Блок: studio-card -->
+                <div class="studio-card">
+                    <h3 class="studio-card__title">Москва</h3>
+                    <p class="studio-card__info">
+                        <i class="fas fa-map-marker-alt studio-card__icon"></i>
+                        ул. Таллинская, д. 2
+                    </p>
+                    <p class="studio-card__info">
+                        <i class="fas fa-phone studio-card__icon"></i>
+                        +7 (495) 123-45-67
+                    </p>
+                    <p class="studio-card__info">
+                        <i class="fas fa-clock studio-card__icon"></i>
+                        Пн-Сб: 10:00 - 22:00
+                    </p>
+                </div>
+
+                <div class="studio-card">
+                    <h3 class="studio-card__title">Красногорск</h3>
+                    <p class="studio-card__info">
+                        <i class="fas fa-map-marker-alt studio-card__icon"></i>
+                        ул. Ленина д. 28
+                    </p>
+                    <p class="studio-card__info">
+                        <i class="fas fa-phone studio-card__icon"></i>
+                        +7 (498) 765-43-21
+                    </p>
+                    <p class="studio-card__info">
+                        <i class="fas fa-clock studio-card__icon"></i>
+                        Пн-Сб: 10:00 - 22:00
+                    </p>
+                </div>
+
+                <div class="studio-card">
+                    <h3 class="studio-card__title">Химки</h3>
+                    <p class="studio-card__info">
+                        <i class="fas fa-map-marker-alt studio-card__icon"></i>
+                        ул. Маяковского д. 2
+                    </p>
+                    <p class="studio-card__info">
+                        <i class="fas fa-phone studio-card__icon"></i>
+                        +7 (499) 555-44-33
+                    </p>
+                    <p class="studio-card__info">
+                        <i class="fas fa-clock studio-card__icon"></i>
+                        Пн-Сб: 10:00 - 22:00
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: tracks -->
+    <section class="tracks">
+        <div class="page">
+            <h2 class="tracks__title">Последние mpeки</h2>
+            <div class="tracks__container">
+                <!-- Блок: track-card -->
+                <div class="track-card">
+                    <div class="track-card__image">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="track-card__info">
+                        <h3 class="track-card__title">Ритмы ночи</h3>
+                        <p class="track-card__description">Александр К., жанр: Хип-хоп</p>
+
+                        <!-- Блок: audio-player -->
+                        <div class="audio-player">
+                            <button class="audio-player__button">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="audio-player__progress-bar">
+                                <div class="audio-player__progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-card__image" style="background-color: #5e8afc;">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="track-card__info">
+                        <h3 class="track-card__title">Тишина между нами</h3>
+                        <p class="track-card__description">Мария С., жанр: Рок-баллада</p>
+
+                        <div class="audio-player">
+                            <button class="audio-player__button">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="audio-player__progress-bar">
+                                <div class="audio-player__progress audio-player__progress--medium"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-card__image" style="background-color: #41b883;">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="track-card__info">
+                        <h3 class="track-card__title">Электрические сны</h3>
+                        <p class="track-card__description">DJ Pulse, жанр: Электроника</p>
+
+                        <div class="audio-player">
+                            <button class="audio-player__button">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="audio-player__progress-bar">
+                                <div class="audio-player__progress audio-player__progress--large"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: footer -->
+    <footer class="footer">
+        <div class="page">
+            <div class="footer__container">
+                <div class="footer__section">
+                    <h3 class="footer__title">О нас</h3>
+                    <p class="footer__text">Мы современная звукозаписывающая студия, предоставляющая полный спектр услуг
+                        по созданию и продвижению музыки.</p>
+                </div>
+
+                <div class="footer__section">
+                    <h3 class="footer__title">Быстрые ссылки</h3>
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Онлайн-запись</a></li>
+                        <li class="footer__item"><a href="services.html" class="footer__link">Услуги</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Портфолио</a></li>
+                        <li class="footer__item"><a href="about.html" class="footer__link">О нас</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h3 class="footer__title">Контакты</h3>
+                    <p class="footer__text"><i class="fas fa-envelope"></i> isip_d.s.gaivoronskiy@mpt.ru</p>
+                    <p class="footer__text"><i class="fas fa-phone"></i> +7 (999) 999-99-99</p>
+
+                    <!-- Блок: social -->
+                    <div class="social">
+                        <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Простой скрипт для имитации работы аудиоплеера
+        document.querySelectorAll('.audio-player__button').forEach(button => {
+            button.addEventListener('click', function () {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-play')) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                } else {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

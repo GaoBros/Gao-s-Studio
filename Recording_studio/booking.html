@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gao's Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background-color: #0d0d12;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Блок: header */
+        .header {
+            background-color: #0a0a0e;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header__logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7e6af7;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .header__logo-icon {
+            margin-right: 10px;
+        }
+
+        /* Блок: nav */
+        .nav__list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav__item {
+            margin-left: 30px;
+        }
+
+        .nav__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav__link:hover {
+            color: #7e6af7;
+        }
+
+        .nav__link--active {
+            color: #7e6af7;
+            border-bottom: 2px solid #7e6af7;
+        }
+
+        /* Блок: auth */
+        .auth__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .auth__link:hover {
+            color: #7e6af7;
+        }
+
+        .auth__link--accent {
+            background-color: #7e6af7;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+        }
+
+        .auth__link--accent:hover {
+            background-color: #6b5ad3;
+            color: white;
+        }
+
+        /* Блок: page-header */
+        .page-header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .page-header__title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #7e6af7, #5e8afc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .page-header__subtitle {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #d0d0d0;
+        }
+
+        /* Блок: booking */
+        .booking {
+            padding: 60px 0;
+        }
+
+        .booking__container {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .booking__form-container {
+            flex: 1;
+            background: #1a1a24;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .booking__info {
+            flex: 1;
+        }
+
+        .booking__title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        /* Блок: form */
+        .form__group {
+            margin-bottom: 25px;
+        }
+
+        .form__label {
+            display: block;
+            margin-bottom: 10px;
+            color: #c0c0c0;
+            font-weight: 500;
+        }
+
+        .form__input,
+        .form__select,
+        .form__textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #252536;
+            border: 1px solid #3d3d52;
+            border-radius: 8px;
+            color: #f0f0f0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form__input:focus,
+        .form__select:focus,
+        .form__textarea:focus {
+            outline: none;
+            border-color: #7e6af7;
+        }
+
+        .form__textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form__row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form__row .form__group {
+            flex: 1;
+        }
+
+        .form__checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .form__checkbox-input {
+            margin-top: 5px;
+        }
+
+        .form__checkbox-label {
+            color: #c0c0c0;
+            font-size: 0.9rem;
+        }
+
+        .form__checkbox-label a {
+            color: #7e6af7;
+            text-decoration: none;
+        }
+
+        .form__checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        /* Блок: button */
+        .button {
+            display: inline-block;
+            background: #7e6af7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .button:hover {
+            background: #6b5ad3;
+            transform: translateY(-3px);
+        }
+
+        .button--outline {
+            background: transparent;
+            border: 2px solid #7e6af7;
+            color: #7e6af7;
+        }
+
+        .button--outline:hover {
+            background: #7e6af7;
+            color: white;
+        }
+
+        /* Блок: info-card */
+        .info-card {
+            background: #1a1a24;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card__title {
+            color: #7e6af7;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card__title i {
+            margin-right: 10px;
+        }
+
+        .info-card__text {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        .info-card__list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .info-card__item {
+            color: #c0c0c0;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-card__item::before {
+            content: '✓';
+            color: #7e6af7;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Блок: studios */
+        .studios {
+            padding: 60px 0;
+            background-color: #13131a;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .studios__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .studios__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .studios__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        /* Блок: studio-card */
+        .studio-card {
+            flex: 1;
+            min-width: 300px;
+            background: #1a1a24;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .studio-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .studio-card__title {
+            color: #7e6af7;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .studio-card__info {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .studio-card__icon {
+            margin-right: 10px;
+            color: #7e6af7;
+        }
+
+        /* Блок: cta */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3') center/cover no-repeat;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .cta__title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .cta__text {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            color: #d0d0d0;
+        }
+
+        /* Блок: footer */
+        .footer {
+            background-color: #0a0a0e;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer__section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer__title {
+            color: #7e6af7;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer__text {
+            color: #a0a0b0;
+            line-height: 1.8;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__item {
+            margin-bottom: 10px;
+        }
+
+        .footer__link {
+            color: #a0a0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer__link:hover {
+            color: #7e6af7;
+        }
+
+        .footer__copyright {
+            color: #a0a0b0;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav__list {
+                display: none;
+            }
+
+            .page-header__title {
+                font-size: 2.5rem;
+            }
+
+            .page-header__subtitle {
+                font-size: 1rem;
+            }
+
+            .booking__container {
+                flex-direction: column;
+            }
+
+            .studios__container {
+                flex-direction: column;
+            }
+
+            .form__row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .header__container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .auth {
+                margin-top: 15px;
+            }
+        }
+
+        /* Стили для календаря */
+        .form__input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+
+        .form__input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Блок: header -->
+    <header class="header">
+        <div class="page">
+            <div class="header__container">
+                <img src="img/logo.png" alt="Gao's studio" class="header__logo" width="88" height="59">
+
+                <!-- Блок: nav -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="booking.html" class="nav__link">Онлайн-запись</a></li>
+                        <li class="nav__item"><a href="services.html" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Блок: auth -->
+                <div class="auth">
+                    <a href="#" class="auth__link">Войти</a>
+                    <a href="#" class="auth__link auth__link--accent">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Блок: page-header -->
+    <section class="page-header">
+        <div class="page">
+            <h1 class="page-header__title">Онлайн-запись в студию</h1>
+            <p class="page-header__subtitle">Забронируйте время в нашей студии звукозаписи онлайн. Выберите удобную
+                дату, время и услугу, и мы свяжемся с вами для подтверждения записи.</p>
+        </div>
+    </section>
+
+    <!-- Блок: booking -->
+    <section class="booking">
+        <div class="page">
+            <div class="booking__container">
+                <div class="booking__form-container">
+                    <h2 class="booking__title">Форма записи</h2>
+
+                    <!-- Блок: form -->
+                    <form class="form" id="booking-form" method="POST" action="booking.php">
+                        <div class="form__group">
+                            <label class="form__label" for="name">Ваше имя *</label>
+                            <input type="text" class="form__input" id="name" name="name" required>
+                        </div>
+
+                        <div class="form__group">
+                            <label class="form__label" for="phone">Телефон *</label>
+                            <input type="tel" class="form__input" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form__group">
+                            <label class="form__label" for="email">Email *</label>
+                            <input type="email" class="form__input" id="email" name="email" required>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label class="form__label" for="studio">Выберите студию *</label>
+                                <select class="form__select" id="studio" name="studio" required>
+                                    <option value="">-- Выберите студию --</option>
+                                    <option value="moscow">Москва, ул. Таллинская, д. 2</option>
+                                    <option value="krasnoperek">Красноперек, ул. Ленина 28</option>
+                                    <option value="himki">Химки, ул. Маяковского 2</option>
+                                </select>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label" for="service">Услуга *</label>
+                                <select class="form__select" id="service" name="service" required>
+                                    <option value="">-- Выберите услугу --</option>
+                                    <option value="recording">Студийная запись</option>
+                                    <option value="mixing">Сведение треков</option>
+                                    <option value="mastering">Мастеринг</option>
+                                    <option value="production">Музыкальное продюсирование</option>
+                                    <option value="sounddesign">Саунд-дизайн</option>
+                                    <option value="consultation">Консультация</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label class="form__label" for="date">Предпочтительная дата *</label>
+                                <input type="date" class="form__input" id="date" name="date" required>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label" for="time">Предпочтительное время *</label>
+                                <input type="time" class="form__input" id="time" name="time" required>
+                            </div>
+                        </div>
+
+                        <div class="form__group">
+                            <label class="form__label" for="duration">Продолжительность сессии *</label>
+                            <select class="form__select" id="duration" name="duration" required>
+                                <option value="">-- Выберите продолжительность --</option>
+                                <option value="1">1 час</option>
+                                <option value="2">2 часа</option>
+                                <option value="3">3 часа</option>
+                                <option value="4">4 часа</option>
+                                <option value="6">6 часов</option>
+                                <option value="8">8 часов (полный день)</option>
+                            </select>
+                        </div>
+
+                        <div class="form__group">
+                            <label class="form__label" for="comment">Дополнительная информация</label>
+                            <textarea class="form__textarea" id="comment" name="comment"
+                                placeholder="Опишите ваш проект, особые пожелания или вопросы..."></textarea>
+                        </div>
+
+                        <div class="form__group">
+                            <div class="form__checkbox">
+                                <input type="checkbox" class="form__checkbox-input" id="agreement" name="agreement"
+                                    required>
+                                <label class="form__checkbox-label" for="agreement">
+                                    Я согласен с <a href="#">правилами студии</a> и даю согласие на обработку персональ

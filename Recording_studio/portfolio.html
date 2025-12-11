@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gao's Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background-color: #0d0d12;
+        }
+        
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Блок: header */
+        .header {
+            background-color: #0a0a0e;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header__logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7e6af7;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header__logo-icon {
+            margin-right: 10px;
+        }
+        
+        /* Блок: nav */
+        .nav__list {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav__item {
+            margin-left: 30px;
+        }
+        
+        .nav__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav__link:hover {
+            color: #7e6af7;
+        }
+        
+        .nav__link--active {
+            color: #7e6af7;
+            border-bottom: 2px solid #7e6af7;
+        }
+        
+        /* Блок: auth */
+        .auth__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .auth__link:hover {
+            color: #7e6af7;
+        }
+        
+        .auth__link--accent {
+            background-color: #7e6af7;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+        }
+        
+        .auth__link--accent:hover {
+            background-color: #6b5ad3;
+            color: white;
+        }
+        
+        /* Блок: page-header */
+        .page-header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+        
+        .page-header__title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #7e6af7, #5e8afc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 800;
+            display: inline-block;
+        }
+        
+        .page-header__subtitle {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #d0d0d0;
+        }
+        
+        /* Блок: filters */
+        .filters {
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .filters__list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filters__item {
+            margin: 5px;
+        }
+        
+        .filters__button {
+            background: #1a1a24;
+            color: #c0c0c0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .filters__button:hover {
+            background: #7e6af7;
+            color: white;
+        }
+        
+        .filters__button--active {
+            background: #7e6af7;
+            color: white;
+        }
+        
+        /* Блок: portfolio */
+        .portfolio {
+            padding: 40px 0 80px;
+        }
+        
+        .portfolio__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Блок: portfolio-item */
+        .portfolio-item {
+            background: #1a1a24;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-item__image {
+            height: 200px;
+            background: linear-gradient(45deg, #7e6af7, #5e8afc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            position: relative;
+        }
+        
+        .portfolio-item__badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #7e6af7;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .portfolio-item__info {
+            padding: 25px;
+        }
+        
+        .portfolio-item__title {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .portfolio-item__description {
+            color: #a0a0b0;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .portfolio-item__meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: #7e6af7;
+            font-size: 0.9rem;
+        }
+        
+        /* Блок: audio-player */
+        .audio-player {
+            width: 100%;
+            background: #252536;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .audio-player__info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .audio-player__title {
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        
+        .audio-player__time {
+            color: #a0a0b0;
+            font-size: 0.9rem;
+        }
+        
+        .audio-player__controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .audio-player__button {
+            background: none;
+            border: none;
+            color: #7e6af7;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a24;
+            transition: all 0.3s;
+        }
+        
+        .audio-player__button:hover {
+            background: #7e6af7;
+            color: white;
+        }
+        
+        .audio-player__progress-container {
+            flex-grow: 1;
+            height: 5px;
+            background: #3d3d52;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .audio-player__progress {
+            position: absolute;
+            height: 100%;
+            background: #7e6af7;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.1s;
+        }
+        
+        .audio-player__volume {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .audio-player__volume-icon {
+            color: #7e6af7;
+            font-size: 18px;
+        }
+        
+        .audio-player__volume-slider {
+            width: 80px;
+            -webkit-appearance: none;
+            height: 4px;
+            background: #3d3d52;
+            border-radius: 2px;
+            outline: none;
+        }
+        
+        .audio-player__volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7e6af7;
+            cursor: pointer;
+        }
+        
+        /* Блок: case-study */
+        .case-study {
+            padding: 80px 0;
+            background-color: #13131a;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+        
+        .case-study__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+        
+        .case-study__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .case-study__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 40px;
+        }
+        
+        /* Блок: case */
+        .case {
+            background: #1a1a24;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .case__header {
+            padding: 25px 25px 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .case__client-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #7e6af7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .case__client-info {
+            flex-grow: 1;
+        }
+        
+        .case__client-name {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .case__project-type {
+            color: #7e6af7;
+            font-size: 0.9rem;
+        }
+        
+        .case__body {
+            padding: 0 25px 25px;
+        }
+        
+        .case__title {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .case__description {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .case__results {
+            background: #252536;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .case__results-title {
+            color: #7e6af7;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .case__results-list {
+            color: #c0c0c0;
+            padding-left: 20px;
+        }
+        
+        .case__results-item {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .case__results-item::before {
+            content: '✓';
+            color: #7e6af7;
+            position: absolute;
+            left: -20px;
+        }
+        
+        /* Блок: button */
+        .button {
+            display: inline-block;
+            background: #7e6af7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background: #6b5ad3;
+            transform: translateY(-3px);
+        }
+        
+        .button--outline {
+            background: transparent;
+            border: 2px solid #7e6af7;
+            color: #7e6af7;
+        }
+        
+        .button--outline:hover {
+            background: #7e6af7;
+            color: white;
+        }
+        
+        /* Блок: cta */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3') center/cover no-repeat;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+        
+        .cta__title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .cta__text {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            color: #d0d0d0;
+        }
+        
+        /* Блок: footer */
+        .footer {
+            background-color: #0a0a0e;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer__section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer__title {
+            color: #7e6af7;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer__text {
+            color: #a0a0b0;
+            line-height: 1.8;
+        }
+        
+        .footer__list {
+            list-style: none;
+        }
+        
+        .footer__item {
+            margin-bottom: 10px;
+        }
+        
+        .footer__link {
+            color: #a0a0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer__link:hover {
+            color: #7e6af7;
+        }
+        
+        .footer__copyright {
+            color: #a0a0b0;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav__list {
+                display: none;
+            }
+            
+            .page-header__title {
+                font-size: 2.5rem;
+            }
+            
+            .page-header__subtitle {
+                font-size: 1rem;
+            }
+            
+            .portfolio__container,
+            .case-study__container {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study__container {
+                gap: 30px;
+            }
+            
+            .header__container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .auth {
+                margin-top: 15px;
+            }
+            
+            .filters__list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Блок: header -->
+    <header class="header">
+        <div class="page">
+            <div class="header__container">
+                <img src="img/logo.png" alt="Gao's studio" class="header__logo" width="88" height="59">
+                
+                <!-- Блок: nav -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="booking.html" class="nav__link">Онлайн-запись</a></li>
+                        <li class="nav__item"><a href="services.html" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Блок: auth -->
+                <div class="auth">
+                    <a href="#" class="auth__link">Войти</a>
+                    <a href="#" class="auth__link auth__link--accent">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Блок: page-header -->
+    <section class="page-header">
+        <div class="page">
+            <h1 class="page-header__title">Наше портфолио</h1>
+            <p class="page-header__subtitle">Послушайте примеры наших работ и ознакомьтесь с кейсами успешных проектов, которые мы реализовали для наших клиентов</p>
+        </div>
+    </section>
+
+    <!-- Блок: filters -->
+    <section class="filters">
+        <div class="page">
+            <ul class="filters__list">
+                <li class="filters__item"><button class="filters__button filters__button--active">Все работы</button></li>
+                <li class="filters__item"><button class="filters__button">Музыка</button></li>
+                <li class="filters__item"><button class="filters__button">Саунд-дизайн</button></li>
+                <li class="filters__item"><button class="filters__button">Подкасты</button></li>
+                <li class="filters__item"><button class="filters__button">Реклама</button></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Блок: portfolio -->
+    <section class="portfolio">
+        <div class="page">
+            <div class="portfolio__container">
+                <!-- Блок: portfolio-item -->
+                <div class="portfolio-item">
+                    <div class="portfolio-item__image">
+                        <i class="fas fa-music"></i>
+                        <span class="portfolio-item__badge">Музыка</span>
+                    </div>
+                    <div class="portfolio-item__info">
+                        <h3 class="portfolio-item__title">Ритмы ночи</h3>
+                        <p class="portfolio-item__description">Альтернативный рок-трек с глубокими басами и эмоциональным вокалом. Запись, сведение и мастеринг.</p>
+                        <div class="portfolio-item__meta">
+                            <span>Александр К.</span>
+                            <span>2023</span>
+                        </div>
+                        
+                        <!-- Блок: audio-player -->
+                        <div class="audio-player">
+                            <div class="audio-player__info">
+                                <div class="audio-player__title">Ритмы ночи</div>
+                                <div class="audio-player__time">0:00 / 3:45</div>
+                            </div>
+                            <div class="audio-player__controls">
+                                <button class="audio-player__button audio-player__play">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="audio-player__progress-container">
+                                    <div class="audio-player__progress"></div>
+                                </div>
+                                <div class="audio-player__volume">
+                                    <i class="fas fa-volume-up audio-player__volume-icon"></i>
+                                    <input type="range" class="audio-player__volume-slider" min="0" max="100" value="80">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="button button--outline">Подробнее о проекте</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-item__image" style="background:linear-gradient(45deg, #5e8afc, #41b883);">
+                        <i class="fas fa-podcast"></i>
+                        <span class="portfolio-item__badge">Подкаст</span>
+                    </div>
+                    <div class="portfolio-item__info">
+                        <h3 class="portfolio-item__title">Технологии будущего</h3>
+                        <p class="portfolio-item__description">Озвучка и сведение подкаста о технологиях и инновациях. Чистый звук и профессиональная обработка голоса.</p>
+                        <div class="portfolio-item__meta">
+                            <span>IT Подкаст</span>
+                            <span>2023</span>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <div class="audio-player__info">
+                                <div class="audio-player__title">Технологии будущего</div>
+                                <div class="audio-player__time">0:00 / 28:15</div>
+                            </div>
+                            <div class="audio-player__controls">
+                                <button class="audio-player__button audio-player__play">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="audio-player__progress-container">
+                                    <div class="audio-player__progress"></div>
+                                </div>
+                                <div class="audio-player__volume">
+                                    <i class="fas fa-volume-up audio-player__volume-icon"></i>
+                                    <input type="range" class="audio-player__volume-slider" min="0" max="100" value="80">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="button button--outline">Подробнее о проекте</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-item__image" style="background:linear-gradient(45deg, #ff7e50, #ff5e7d);">
+                        <i class="fas fa-ad"></i>
+                        <span class="portfolio-item__badge">Реклама</span>
+                    </div>
+                    <div class="portfolio-item__info">
+                        <h3 class="portfolio-item__title">Бренд одежды "Style"</h3>
+                        <p class="portfolio-item__description">Создание звукового брендинга и аудиорекламы для новой коллекции известного бренда одежды.</p>
+                        <div class="portfolio-item__meta">
+                            <span>Style Brand</span>
+                            <span>2022</span>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <div class="audio-player__info">
+                                <div class="audio-player__title">Реклама "Style"</div>
+                                <div class="audio-player__time">0:00 / 0:30</div>
+                            </div>
+                            <div class="audio-player__controls">
+                                <button class="audio-player__button audio-player__play">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="audio-player__progress-container">
+                                    <div class="audio-player__progress"></div>
+                                </div>
+                                <div class="audio-player__volume">
+                                    <i class="fas fa-volume-up audio-player__volume-icon"></i>
+                                    <input type="range" class="audio-player__volume-slider" min="0" max="100" value="80">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="button button--outline">Подробнее о проекте</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: case-study -->
+    <section class="case-study">
+        <div class="page">
+            <h2 class="case-study__title">Кейсы клиентов</h2>
+            <div class="case-study__container">
+                <!-- Блок: case -->
+                <div class="case">
+                    <div class="case__header">
+                        <div class="case__client-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="case__client-info">
+                            <div class="case__client-name">Анна Смирнова</div>
+                            <div class="case__project-type">Музыкальный альбом</div>
+                        </div>
+                    </div>
+                    <div class="case__body">
+                        <h3 class="case__title">Дебютный альбом "Тишина между нами"</h3>
+                        <p class="case__description">Полный цикл работ над дебютным альбомом начинающей исполнительницы: от записи вокала и инструментов до сведения, мастеринга и подготовки к релизу.</p>
+                        
+                        <div class="case__results">
+                            <h4 class="case__results-title">Результаты:</h4>
+                            <ul class="case__results-list">
+                                <li class="case__results-item">10 треков в стиле инди-поп</li>
+                                <li class="case__results-item">Релиз на всех стриминговых платформах</li>
+                                <li class="case__results-item">Более 100,000 прослушиваний за первый месяц</li>
+                                <li class="case__results-item">Попадание в тематические плейлисты</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="button">Смотреть полный кейс</a>
+                    </div>
+                </div>
+                
+                <div class="case">
+                    <div class="case__header">
+                        <div class="case__client-image" style="background-color: #5e8afc;">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="case__client-info">
+                            <div class="case__client-name">GameDev Studio</div>
+                            <div class="case__project-type">Саунд-дизайн для игры</div>
+                        </div>
+                    </div>
+                    <div class="case__body">
+                        <h3 class="case__title">Саундтрек и звуковые эффекты для игры "Cyber Realm"</h3>
+                        <p class="case__description">Создание полного звукового сопровождения для компьютерной игры в жанре экшен-RPG: фоновой музыки, звуковых эффектов и системных звуков.</p>
+                        
+                        <div class="case__results">
+                            <h4 class="case__results-title">Результаты:</h4>
+                            <ul class="case__results-list">
+                                <li class="case__results-item">45 минут оригинальной музыки</li>
+                                <li class="case__results-item">Более 200 уникальных звуковых эффектов</li>
+                                <li class="case__results-item">Полная интеграция с игровым движком</li>
+                                <li class="case__results-item">Положительные отзывы о звуковом оформлении</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="button">Смотреть полный кейс</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: cta -->
+    <section class="cta">
+        <div class="page">
+            <h2 class="cta__title">Хотите такой же результат?</h2>
+            <p class="cta__text">Оставьте заявку и мы обсудим ваш проект, подберем подходящие услуги и составим индивидуальное предложение</p>
+            <a href="#" class="button">Обсудить проект</a>
+        </div>
+    </section>
+
+    <!-- Блок: footer -->
+    <footer class="footer">
+        <div class="page">
+            <div class="footer__container">
+                <div class="footer__section">
+                    <h3 class="footer__title">О нас</h3>
+                    <p class="footer__text">Мы современная звукозаписывающая студия, предоставляющая полный спектр услуг по созданию и продвижению музыки.</p>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Быстрые ссылки</h3>
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="#" class="footer__link">Главная</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Финанс-запись</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Услуги</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Портфолио</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">О нас</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Контакты</h3>
+                    <p class="footer__text"><i class="fas fa-envelope"></i> isip_d.s.gaivoronskiy@mpt.ru</p>
+                    <p class="footer__text"><i class="fas fa-phone"></i> +7 (999) 999-99-99</p>
+                    
+                    <!-- Блок: social -->
+                    <div class="social">
+                        <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script>
+        // Функционал аудиоплеера
+        document.querySelectorAll('.audio-player').forEach(player => {
+            const playButton = player.querySelector('.audio-player__play');
+            const progressBar = player.querySelector('.audio-player__progress');
+            const progressContainer = player.querySelector('.audio-player__progress-container');
+            const timeDisplay = player.querySelector('.audio-player__time');
+            const volumeSlider = player.querySelector('.audio-player__volume-slider');
+            
+            let isPlaying = false;
+            let audioDuration = 225; // 3:45 в секундах для примера
+            let currentTime = 0;
+            let progressInterval;
+            
+            // Установка случайной позиции прогресса для демонстрации
+            const randomProgress = Math.floor(Math.random() * 90) + 5;
+            progressBar.style.width = `${randomProgress}%`;
+            currentTime = (audioDuration * randomProgress) / 100;
+            updateTimeDisplay();
+            
+            // Обработчик кнопки воспроизведения
+            playButton.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                
+                if (isPlaying) {
+                    // Останавливаем воспроизведение
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    clearInterval(progressInterval);
+                } else {
+                    // Запускаем воспроизведение
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    
+                    // Имитация воспроизведения
+                    progressInterval = setInterval(() => {
+                        if (currentTime < audioDuration) {
+                            currentTime += 1;
+                            const progressPercent = (currentTime / audioDuration) * 100;
+                            progressBar.style.width = `${progressPercent}%`;
+                            updateTimeDisplay();
+                        } else {
+                            clearInterval(progressInterval);
+                            isPlaying = false;
+                            icon.classList.remove('fa-pause');
+                            icon.classList.add('fa-play');
+                        }
+                    }, 1000);
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // Обработчик клика по прогресс-бару
+            progressContainer.addEventListener('click', function(e) {
+                const clickPosition = e.offsetX;
+                const progressWidth = this.offsetWidth;
+                const progressPercent = (clickPosition / progressWidth) * 100;
+                
+                progressBar.style.width = `${progressPercent}%`;
+                currentTime = (audioDuration * progressPercent) / 100;
+                updateTimeDisplay();
+            });
+            
+            // Обработчик громкости
+            volumeSlider.addEventListener('input', function() {
+                // В реальном приложении здесь будет установка громкости аудио
+            });
+            
+            // Функция обновления отображения времени
+            function updateTimeDisplay() {
+                const minutes = Math.floor(currentTime / 60);
+                const seconds = Math.floor(currentTime % 60);
+                const totalMinutes = Math.floor(audioDuration / 60);
+                const totalSeconds = Math.floor(audioDuration % 60);
+                
+                timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / ${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+            }
+        });
+        
+        // Фильтрация работ
+        document.querySelectorAll('.filters__button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Удаляем активный класс у всех кнопок
+                document.querySelectorAll('.filters__button').forEach(btn => {
+                    btn.classList.remove('filters__button--active');
+                });
+                
+                // Добавляем активный класс текущей кнопке
+                this.classList.add('filters__button--active');
+                
+                // Здесь будет логика фильтрации работ
+                // Для демонстрации просто показываем уведомление
+                const filterName = this.textContent;
+                alert(`Показаны работы в категории: ${filterName}`);
+            });
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

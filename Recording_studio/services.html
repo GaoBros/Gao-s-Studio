@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gao's Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background-color: #0d0d12;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Блок: header */
+        .header {
+            background-color: #0a0a0e;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header__logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7e6af7;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .header__logo-icon {
+            margin-right: 10px;
+        }
+
+        /* Блок: nav */
+        .nav__list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav__item {
+            margin-left: 30px;
+        }
+
+        .nav__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav__link:hover {
+            color: #7e6af7;
+        }
+
+        .nav__link--active {
+            color: #7e6af7;
+            border-bottom: 2px solid #7e6af7;
+        }
+
+        /* Блок: auth */
+        .auth__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .auth__link:hover {
+            color: #7e6af7;
+        }
+
+        .auth__link--accent {
+            background-color: #7e6af7;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+        }
+
+        .auth__link--accent:hover {
+            background-color: #6b5ad3;
+            color: white;
+        }
+
+        /* Блок: page-header */
+        .page-header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .page-header__title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #7e6af7, #5e8afc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .page-header__subtitle {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #d0d0d0;
+        }
+
+        /* Блок: services */
+        .services {
+            padding: 60px 0;
+        }
+
+        .services__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .services__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .services__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Блок: service-card */
+        .service-card {
+            background: #1a1a24;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card__icon {
+            font-size: 50px;
+            color: #7e6af7;
+            margin-bottom: 20px;
+        }
+
+        .service-card__title {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .service-card__description {
+            color: #c0c0c0;
+            margin-bottom: 25px;
+        }
+
+        .service-card__price {
+            color: #7e6af7;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .service-card__features {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .service-card__feature {
+            color: #c0c0c0;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-card__feature::before {
+            content: '✓';
+            color: #7e6af7;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Блок: button */
+        .button {
+            display: inline-block;
+            background: #7e6af7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #6b5ad3;
+            transform: translateY(-3px);
+        }
+
+        .button--outline {
+            background: transparent;
+            border: 2px solid #7e6af7;
+            color: #7e6af7;
+        }
+
+        .button--outline:hover {
+            background: #7e6af7;
+            color: white;
+        }
+
+        /* Блок: process */
+        .process {
+            padding: 80px 0;
+            background-color: #13131a;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .process__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .process__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .process__steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+        }
+
+        .process__steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            z-index: 1;
+        }
+
+        /* Блок: process-step */
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step__number {
+            width: 60px;
+            height: 60px;
+            background: #7e6af7;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .process-step__title {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .process-step__description {
+            color: #c0c0c0;
+        }
+
+        /* Блок: faq */
+        .faq {
+            padding: 60px 0;
+        }
+
+        .faq__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .faq__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .faq__items {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Блок: faq-item */
+        .faq-item {
+            background: #1a1a24;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-item__question {
+            padding: 20px;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item__question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #7e6af7;
+        }
+
+        .faq-item__answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            color: #c0c0c0;
+        }
+
+        .faq-item--active .faq-item__answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        .faq-item--active .faq-item__question::after {
+            content: '-';
+        }
+
+        /* Блок: cta */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/Background.jpg') center/cover no-repeat;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .cta__title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .cta__text {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            color: #d0d0d0;
+        }
+
+        /* Блок: footer */
+        .footer {
+            background-color: #0a0a0e;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer__section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer__title {
+            color: #7e6af7;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer__text {
+            color: #a0a0b0;
+            line-height: 1.8;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__item {
+            margin-bottom: 10px;
+        }
+
+        .footer__link {
+            color: #a0a0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer__link:hover {
+            color: #7e6af7;
+        }
+
+        /* Блок: social */
+        .social {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social__link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #252536;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social__link:hover {
+            background: #7e6af7;
+            transform: translateY(-3px);
+        }
+
+        .footer__copyright {
+            color: #a0a0b0;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav__list {
+                display: none;
+            }
+
+            .page-header__title {
+                font-size: 2.5rem;
+            }
+
+            .page-header__subtitle {
+                font-size: 1rem;
+            }
+
+            .services__container {
+                grid-template-columns: 1fr;
+            }
+
+            .process__steps::before {
+                display: none;
+            }
+
+            .process-step {
+                margin-bottom: 40px;
+            }
+
+            .header__container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .auth {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Блок: header -->
+    <header class="header">
+        <div class="page">
+            <div class="header__container">
+                <img src="img/logo.png" alt="Gao's studio" class="header__logo" width="88" height="59">
+
+                <!-- Блок: nav -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="booking.html" class="nav__link">Онлайн-запись</a></li>
+                        <li class="nav__item"><a href="services.html" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Блок: auth -->
+                <div class="auth">
+                    <a href="#" class="auth__link">Войти</a>
+                    <a href="#" class="auth__link auth__link--accent">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Блок: page-header -->
+    <section class="page-header">
+        <div class="page">
+            <h1 class="page-header__title">Наши услуги</h1>
+            <p class="page-header__subtitle">Мы предлагаем полный спектр услуг звукозаписи, сведения, мастеринга и
+                продвижения музыки. Каждая услуга адаптирована под ваши уникальные потребности.</p>
+        </div>
+    </section>
+
+    <!-- Блок: services -->
+    <section class="services">
+        <div class="page">
+            <h2 class="services__title">Основные услуги</h2>
+            <div class="services__container">
+                <!-- Блок: service-card -->
+                <div class="service-card">
+                    <div class="service-card__icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="service-card__title">Студийная запись</h3>
+                    <p class="service-card__description">Профессиональная запись вокала и инструментов в нашей студии
+                    </p>
+                    <div class="service-card__price">от 2000 ₽/час</div>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature">Профессиональное оборудование</li>
+                        <li class="service-card__feature">Опытный звукоинженер</li>
+                        <li class="service-card__feature">Высокое качество записи</li>
+                        <li class="service-card__feature">Комфортные условия</li>
+                    </ul>
+                    <a href="#" class="button">Заказать</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card__icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 class="service-card__title">Сведение треков</h3>
+                    <p class="service-card__description">Балансировка и обработка всех элементов вашего трека</p>
+                    <div class="service-card__price">от 5000 ₽/трек</div>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature">Балансировка инструментов</li>
+                        <li class="service-card__feature">Работа с динамикой</li>
+                        <li class="service-card__feature">Пространственная обработка</li>
+                        <li class="service-card__feature">Профессиональные плагины</li>
+                    </ul>
+                    <a href="#" class="button">Заказать</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card__icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3 class="service-card__title">Мастеринг</h3>
+                    <p class="service-card__description">Финальная полировка вашего трека перед выпуском</p>
+                    <div class="service-card__price">от 3000 ₽/трек</div>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature">Коррекция частотного баланса</li>
+                        <li class="service-card__feature">Оптимизация громкости</li>
+                        <li class="service-card__feature">Подготовка для различных платформ</li>
+                        <li class="service-card__feature">Сравнение с референсными треками</li>
+                    </ul>
+                    <a href="#" class="button">Заказать</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card__icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="service-card__title">Написание музыки</h3>
+                    <p class="service-card__description">Создание оригинальной музыки и аранжировок</p>
+                    <div class="service-card__price">от 10000 ₽</div>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature">Создание аранжировок</li>
+                        <li class="service-card__feature">Написание мелодий</li>
+                        <li class="service-card__feature">Работа с битмейкерами</li>
+                        <li class="service-card__feature">Различные жанры</li>
+                    </ul>
+                    <a href="#" class="button">Заказать</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card__icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="service-card__title">Саунд-дизайн</h3>
+                    <p class="service-card__description">Создание звуковых эффектов для медиа проектов</p>
+                    <div class="service-card__price">от 8000 ₽</div>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature">Звуковые эффекты для игр</li>
+                        <li class="service-card__feature">Саундтреки для видео</li>
+                        <li class="service-card__feature">Фирменные звуки</li>
+                        <li class="service-card__feature">Аудиобрендинг</li>
+                    </ul>
+                    <a href="#" class="button">Заказать</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card__icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="service-card__title">Продвижение музыки</h3>
+                    <p class="service-card__description">Помощь в продвижении вашей музыки на стриминговых платформах
+                    </p>
+                    <div class="service-card__price">от 15000 ₽</div>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature">Размещение на платформах</li>
+                        <li class="service-card__feature">Продвижение в соцсетях</li>
+                        <li class="service-card__feature">Коллаборации с артистами</li>
+                        <li class="service-card__feature">Консультации по продвижению</li>
+                    </ul>
+                    <a href="#" class="button">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: process -->
+    <section class="process">
+        <div class="page">
+            <h2 class="process__title">Как мы работаем</h2>
+            <div class="process__steps">
+                <!-- Блок: process-step -->
+                <div class="process-step">
+                    <div class="process-step__number">1</div>
+                    <h3 class="process-step__title">Запись и выбор услуг</h3>
+                    <p class="process-step__description">Запись на сессию и выбор услуг проводится на нашем сайте</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step__number">2</div>
+                    <h3 class="process-step__title">Сессия</h3>
+                    <p class="process-step__description">Проводим сессии звукозаписи у нас в студии</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step__number">3</div>
+                    <h3 class="process-step__title">Обработка</h3>
+                    <p class="process-step__description">Сводим и мастерим ваши треки до идеального звучания</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step__number">4</div>
+                    <h3 class="process-step__title">Результат</h3>
+                    <p class="process-step__description">Предоставляем готовый продукт и поддерживаем его продвижение
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: faq -->
+    <section class="faq">
+        <div class="page">
+            <h2 class="faq__title">Часто задаваемые вопросы</h2>
+            <div class="faq__items">
+                <!-- Блок: faq-item -->
+                <div class="faq-item">
+                    <div class="faq-item__question">Сколько времени занимает процесс записи?</div>
+                    <div class="faq-item__answer">Время записи зависит от сложности проекта. Обычно сессия записи
+                        занимает от 2 до 8 часов. Для полноценного альбома может потребоваться несколько дней работы.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item__question">Можно ли присутствовать на процессе сведения?</div>
+                    <div class="faq-item__answer">Да, мы приветствуем участие артистов в процессе сведения. Вы можете
+                        присутствовать лично в студии или участвовать онлайн через специальную платформу.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item__question">Предоставляете ли вы инструменты для записи?</div>
+                    <div class="faq-item__answer">Наши студии оборудованы различными музыкальными инструментами, включая
+                        барабанные установки, клавишные, гитары и бас-гитары. Вы также можете принести свои инструменты.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item__question">Работаете ли вы с начинающими артистами?</div>
+                    <div class="faq-item__answer">Конечно! Мы любим работать с талантливыми артистами на любом этапе их
+                        карьеры. Предлагаем специальные условия и консультации для начинающих музыкантов.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: cta -->
+    <section class="cta">
+        <div class="page">
+            <h2 class="cta__title">Готовы создать свой звук?</h2>
+            <p class="cta__text">Свяжитесь с нами для бесплатной консультации и записи на первую сессию в нашей студии
+            </p>
+            <a href="#" class="button button--outline">Записаться на консультацию</a>
+        </div>
+    </section>
+
+    <!-- Блок: footer -->
+    <footer class="footer">
+        <div class="page">
+            <div class="footer__container">
+                <div class="footer__section">
+                    <h3 class="footer__title">О нас</h3>
+                    <p class="footer__text">Мы современная звукозаписывающая студия, предоставляющая полный спектр услуг
+                        по созданию и продвижению музыки.</p>
+                </div>
+
+                <div class="footer__section">
+                    <h3 class="footer__title">Быстрые ссылки</h3>
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="#" class="footer__link">Главная</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Онлайн-запись</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Услуги</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Портфолио</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">О нас</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h3 class="footer__title">Контакты</h3>
+                    <p class="footer__text"><i class="fas fa-envelope"></i> isip_d.s.gaivoronskiy@mpt.ru</p>
+                    <p class="footer__text"><i class="fas fa-phone"></i> +7 (999) 999-99-99</p>
+
+                    <!-- Блок: social -->
+                    <div class="social">
+                        <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Скрипт для работы FAQ
+        document.querySelectorAll('.faq-item__question').forEach(question => {
+            question.addEventListener('click', function () {
+                const item = this.parentElement;
+                item.classList.toggle('faq-item--active');
+            });
+        });
+
+        // Скрипт для плавной прокрутки
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

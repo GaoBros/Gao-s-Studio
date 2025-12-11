@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gao's Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background-color: #0d0d12;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Блок: header */
+        .header {
+            background-color: #0a0a0e;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header__logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7e6af7;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .header__logo-icon {
+            margin-right: 10px;
+        }
+
+        /* Блок: nav */
+        .nav__list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav__item {
+            margin-left: 30px;
+        }
+
+        .nav__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav__link:hover {
+            color: #7e6af7;
+        }
+
+        .nav__link--active {
+            color: #7e6af7;
+            border-bottom: 2px solid #7e6af7;
+        }
+
+        /* Блок: auth */
+        .auth__link {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .auth__link:hover {
+            color: #7e6af7;
+        }
+
+        .auth__link--accent {
+            background-color: #7e6af7;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+        }
+
+        .auth__link--accent:hover {
+            background-color: #6b5ad3;
+            color: white;
+        }
+
+        /* Блок: page-header */
+        .page-header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .page-header__title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #7e6af7, #5e8afc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .page-header__subtitle {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #d0d0d0;
+        }
+
+        /* Блок: about */
+        .about {
+            padding: 60px 0;
+        }
+
+        .about__container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .about__container--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .about__content {
+            flex: 1;
+        }
+
+        .about__image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .about__image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about__title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .about__text {
+            color: #c0c0c0;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Блок: values */
+        .values {
+            padding: 80px 0;
+            background-color: #13131a;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .values__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .values__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .values__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Блок: value-card */
+        .value-card {
+            background: #1a1a24;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-card__icon {
+            font-size: 50px;
+            color: #7e6af7;
+            margin-bottom: 20px;
+        }
+
+        .value-card__title {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .value-card__description {
+            color: #c0c0c0;
+        }
+
+        /* Блок: team */
+        .team {
+            padding: 60px 0;
+        }
+
+        .team__title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .team__title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #7e6af7, #5e8afc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .team__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        /* Блок: team-member */
+        .team-member {
+            background: #1a1a24;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member__image {
+            height: 250px;
+            background-color: #7e6af7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+        }
+
+        .team-member__info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-member__name {
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .team-member__role {
+            color: #7e6af7;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .team-member__description {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+        }
+
+        /* Блок: social */
+        .social {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .social__link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #252536;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social__link:hover {
+            background: #7e6af7;
+            transform: translateY(-3px);
+        }
+
+        /* Блок: stats */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3') center/cover no-repeat;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .stats__container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        /* Блок: stat */
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat__number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #7e6af7;
+            margin-bottom: 10px;
+        }
+
+        .stat__label {
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+
+        /* Блок: cta */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #13131a;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .cta__title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .cta__text {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            color: #d0d0d0;
+        }
+
+        /* Блок: button */
+        .button {
+            display: inline-block;
+            background: #7e6af7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #6b5ad3;
+            transform: translateY(-3px);
+        }
+
+        .button--outline {
+            background: transparent;
+            border: 2px solid #7e6af7;
+            color: #7e6af7;
+        }
+
+        .button--outline:hover {
+            background: #7e6af7;
+            color: white;
+        }
+
+        /* Блок: footer */
+        .footer {
+            background-color: #0a0a0e;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer__section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer__title {
+            color: #7e6af7;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer__text {
+            color: #a0a0b0;
+            line-height: 1.8;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__item {
+            margin-bottom: 10px;
+        }
+
+        .footer__link {
+            color: #a0a0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer__link:hover {
+            color: #7e6af7;
+        }
+
+        .footer__copyright {
+            color: #a0a0b0;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav__list {
+                display: none;
+            }
+
+            .page-header__title {
+                font-size: 2.5rem;
+            }
+
+            .page-header__subtitle {
+                font-size: 1rem;
+            }
+
+            .about__container {
+                flex-direction: column;
+            }
+
+            .values__container,
+            .team__container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats__container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .header__container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .auth {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Блок: header -->
+    <header class="header">
+        <div class="page">
+            <div class="header__container">
+                <img src="img/logo.png" alt="Gao's studio" class="header__logo" width="88" height="59">
+
+                <!-- Блок: nav -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="booking.html" class="nav__link">Онлайн-запись</a></li>
+                        <li class="nav__item"><a href="services.html" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Блок: auth -->
+                <div class="auth">
+                    <a href="#" class="auth__link">Войти</a>
+                    <a href="#" class="auth__link auth__link--accent">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Блок: page-header -->
+    <section class="page-header">
+        <div class="page">
+            <h1 class="page-header__title">О нашей студии</h1>
+            <p class="page-header__subtitle">Узнайте больше о нашей философии, команде и подходе к созданию музыки,
+                которая вдохновляет и запоминается</p>
+        </div>
+    </section>
+
+    <!-- Блок: about -->
+    <section class="about">
+        <div class="page">
+            <div class="about__container">
+                <div class="about__content">
+                    <h2 class="about__title">Наша история</h2>
+                    <p class="about__text">Gao's Studio был основан группой энтузиастов, увлеченных созданием
+                        качественного звука. Начав с небольшой студии в Москве, мы выросли в три современных
+                        звукозаписывающих комплекса, оснащенных по последнему слову техники.</p>
+                    <p class="about__text">За эти годы мы работали с сотнями артистов различных жанров — от начинающих
+                        исполнителей до известных музыкантов. Наш опыт позволяет нам находить уникальный подход к
+                        каждому проекту.</p>
+                    <a href="portfolio.html" class="button">Наше портфолио</a>
+                </div>
+                <div class="about__image">
+                    <img src="img/about_us.jpg"
+                        alt="Наша студия">
+                </div>
+            </div>
+
+            <div class="about__container about__container--reverse">
+                <div class="about__content">
+                    <h2 class="about__title">Наша философия</h2>
+                    <p class="about__text">Мы верим, что каждая великая мелодия начинается с тишины и того самого
+                        мгновения, когда в голове рождается идея — ещё неясный шёпот, ритм, эмоция.</p>
+                    <p class="about__text">Наша задача — услышать этот шёпот, поймать эмоцию и превратить её в чистую,
+                        мощную и безупречную звуковую реальность. Мы создаем среду, в которой любая творческая идея
+                        раскрывается в полную силу.</p>
+                    <a href="services.html" class="button button--outline">Наши услуги</a>
+                </div>
+                <div class="about__image">
+                    <img src="img/about_us_2.jpg"
+                        alt="Наша философия">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: values -->
+    <section class="values">
+        <div class="page">
+            <h2 class="values__title">Наши ценности</h2>
+            <div class="values__container">
+                <!-- Блок: value-card -->
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="value-card__title">Качество</h3>
+                    <p class="value-card__description">Мы стремимся к безупречному качеству звука в каждом проекте,
+                        используя лучшее оборудование и технологии.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-card__title">Креативность</h3>
+                    <p class="value-card__description">Мы поощряем эксперименты и инновации, помогая артистам находить
+                        их уникальное звучание.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="value-card__title">Страсть</h3>
+                    <p class="value-card__description">Мы страстно любим музыку и верим в её преобразующую силу, что
+                        отражается в нашей работе.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="value-card__title">Сообщество</h3>
+                    <p class="value-card__description">Мы создаем сообщество талантливых людей, поддерживая друг друга в
+                        творческом росте и развитии.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: team -->
+    <section class="team">
+        <div class="page">
+            <h2 class="team__title">Наша команда</h2>
+            <div class="team__container">
+                <!-- Блок: team-member -->
+                <div class="team-member">
+                    <div class="team-member__image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="team-member__info">
+                        <h3 class="team-member__name">Алексей Петров</h3>
+                        <p class="team-member__role">Главный звукоинженер</p>
+                        <p class="team-member__description">Опыт работы 15 лет. Специализируется на рок и альтернативной
+                            музыке.</p>
+                        <div class="social">
+                            <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member__image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="team-member__info">
+                        <h3 class="team-member__name">Мария Иванова</h3>
+                        <p class="team-member__role">Продюсер</p>
+                        <p class="team-member__description">Работала с известными артистами. Специализируется на поп и
+                            электронной музыке.</p>
+                        <div class="social">
+                            <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member__image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="team-member__info">
+                        <h3 class="team-member__name">Дмитрий Смирнов</h3>
+                        <p class="team-member__role">Мастеринг-инженер</p>
+                        <p class="team-member__description">Специалист по финальной обработке звука. Работает с
+                            различными жанрами.</p>
+                        <div class="social">
+                            <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member__image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="team-member__info">
+                        <h3 class="team-member__name">Ольга Козлова</h3>
+                        <p class="team-member__role">Саунд-дизайнер</p>
+                        <p class="team-member__description">Создает уникальные звуковые эффекты и атмосферы для
+                            музыкальных проектов.</p>
+                        <div class="social">
+                            <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: cta -->
+    <section class="cta">
+        <div class="page">
+            <h2 class="cta__title">Готовы начать сотрудничество?</h2>
+            <p class="cta__text">Приходите в нашу студию и давайте вместе создадим что-то по-настоящему уникальное и
+                вдохновляющее</p>
+            <a href="#" class="button">Связаться с нами</a>
+        </div>
+    </section>
+
+    <!-- Блок: footer -->
+    <footer class="footer">
+        <div class="page">
+            <div class="footer__container">
+                <div class="footer__section">
+                    <h3 class="footer__title">О нас</h3>
+                    <p class="footer__text">Мы современная звукозаписывающая студия, предоставляющая полный спектр услуг
+                        по созданию и продвижению музыки.</p>
+                </div>
+
+                <div class="footer__section">
+                    <h3 class="footer__title">Быстрые ссылки</h3>
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Финанс-запись</a></li>
+                        <li class="footer__item"><a href="services.html" class="footer__link">Услуги</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Портфолио</a></li>
+                        <li class="footer__item"><a href="about.html" class="footer__link">О нас</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h3 class="footer__title">Контакты</h3>
+                    <p class="footer__text"><i class="fas fa-envelope"></i> isip_d.s.gaivoronskiy@mpt.ru</p>
+                    <p class="footer__text"><i class="fas fa-phone"></i> +7 (999) 999-99-99</p>
+
+                    <!-- Блок: social -->
+                    <div class="social">
+                        <a href="#" class="social__link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Скрипт для плавной прокрутки
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
